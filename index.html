@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>विद्यालय | ज्ञान, साहित्य और साधन</title>
@@ -7,34 +6,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
+  <body>
+    
   <header class="site-header">
-    <h1>विद्यालय</h1>
-    <p class="tagline">ज्ञान • साहित्य • उपयोगी साधन</p>
+    <h1 class="brand">विद्यालय</h1>
+  <p class="tagline"> <strong style="color:black; font-size:1.15rem">Vidyalaya : </strong> ज्ञान • साहित्य • उपयोगी साधन</p>
   </header>
+  
+  <nav class="main-nav">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
   <main class="container">
 
     <section class="intro">
-      <p>
-        विद्यालय एक सरल और शांत मंच है जहाँ अध्ययन सामग्री,
-        कहानियाँ, कविताएँ और उपयोगी टूल्स एक ही स्थान पर उपलब्ध हैं।
-        यह मंच विद्यार्थियों, पाठकों और जिज्ञासु मन के लोगों के लिए है।
-      </p>
-    </section>
+  <h2> Vidyalaya आपका स्वागत करता है </h2>
+
+  <p>
+    Vidyalay एक ऐसा मंच है जहाँ ज्ञान, साहित्य और उपयोगी साधन
+    एक ही स्थान पर उपलब्ध हैं।
+  </p>
+
+  <p>
+    यहाँ आप अध्ययन सामग्री, कहानियाँ, कविताएँ और सरल टूल्स के माध्यम से
+    सीखने और पढ़ने का आनंद ले सकते हैं।
+  </p>
+
+  <p>
+    अपनी पसंद का विषय चुनें और सीखने की यात्रा शुरू करें।
+  </p>
+</section>
 
     <section class="features">
-      <h2>यहाँ क्या मिलेगा</h2>
+<div class="feature-list">
+<a href="study.html" class="feature-item">
+  <h3>College Students</h3>
+  <p>Class 8–12 के लिए सरल और उपयोगी अध्ययन सामग्री।</p>
+</a>
+<a href="stories.html" class="feature-item">
+  <h3>कहानियाँ और कविताएँ</h3>
+  <p>हिंदी की प्रसिद्ध और प्रेरणादायक कहानियाँ व कविताएँ।</p>
+</a>
 
-      <div class="feature-list">
-        <div class="feature-item">
-          <h3>अध्ययन सामग्री</h3>
-          <p>Class 8–12 के लिए सरल और उपयोगी अध्ययन सामग्री।</p>
-        </div>
+<a href="literature.html" class="feature-item">
+  <h3>हिंदी साहित्य</h3>
+  <p>प्रेमचंद, जयशंकर प्रसाद जैसे रचनाकारों की रचनाएँ।</p>
+</a>
 
-        <div class="feature-item">
-          <h3>कहानियाँ और कविताएँ</h3>
+<a href="tools.html" class="feature-item">
+  <h3>उपयोगी टूल्स</h3>
+  <p>Age calculator, Rank calculator जैसे टूल्स।</p>
+</a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© विद्यालय</p>
+  </footer>
+
+<script>
+  const buttons = document.querySelectorAll('.feature-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      const circle = document.createElement('span');
+      const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+      const radius = diameter / 2;
+
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
+      circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
+      circle.classList.add('ripple');
+
+      const ripple = btn.querySelector('.ripple');
+
+      if (ripple) {
+        ripple.remove();
+      }
+
+      btn.appendChild(circle);
+    });
+  });
+</script>
+</body>
+</html>          <h3>कहानियाँ और कविताएँ</h3>
           <p>हिंदी की प्रसिद्ध और प्रेरणादायक कहानियाँ व कविताएँ।</p>
         </div>
 
