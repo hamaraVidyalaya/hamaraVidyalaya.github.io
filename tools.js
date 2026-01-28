@@ -36,29 +36,46 @@ function parseFlexibleDate(input) {
   return d;
 }
 
-/* =====================================================
-   AGE CALCULATOR
-===================================================== */
+/* ---------- Accurate Age Calculator (Y-M-D) ---------- */
 function calculateAge() {
-  const dob = parseFlexibleDate(document.getElementById("dob").value);
-  const out = document.getElementById("result");
+  const dobInput = document.getElementById("dob").value.trim();
+  const result = document.getElementById("result");
 
+  const dob = parseFlexibleDate(dobInput);
   if (!dob) {
-    out.textContent = "गलत तिथि। DD-MM-YYYY या DD-Mon-YYYY लिखें।";
+    result.textContent = "कृपया सही Date Of Birth (जन्म तिथि) भरें (DD-MM-YYYY)।";
     return;
   }
 
   const today = new Date();
-  let y = today.getFullYear() - dob.getFullYear();
-  let m = today.getMonth() - dob.getMonth();
 
-  if (today.getDate() < dob.getDate()) m--;
-  if (m < 0) {
-    y--; m += 12;
+  // ❌ Future DOB check
+  if (dob > today) {
+    result.textContent = "Date Of Birth (जन्म तिथि) भविष्य की नहीं हो सकती।";
+    return;
   }
 
-  out.textContent = `आपकी आयु: ${y} वर्ष ${m} महीने`;
+  let years = today.getFullYear() - dob.getFullYear();
+  let months = today.getMonth() - dob.getMonth();
+  let days = today.getDate() - dob.getDate();
+
+  // Days adjustment
+  if (days < 0) {
+    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+    days += prevMonth.getDate();
+    months--;
+  }
+
+  // Months adjustment
+  if (months < 0) {
+    months += 12;
+    years--;
+  }
+
+  result.textContent =
+    `आपकी आयु है: ${years} वर्ष ${months} महीने ${days} दिन`;
 }
+
 
 /* =====================================================
    DATE DIFFERENCE
@@ -99,6 +116,29 @@ function calculateDateDifference() {
   r2.textContent = `कुल महीने: ${y * 12 + m}`;
   r3.textContent = `कुल दिन: ${totalDays}`;
 }
+
+/* ---------- Date Plus Days ---------- */
+function calculateDatePlusDays() {
+  const dateInput = document.getElementById("startDate").value;
+  const days = parseInt(document.getElementById("addDays").value);
+  const out = document.getElementById("plusResult");
+
+  const start = parseFlexibleDate(dateInput);
+  if (!start || isNaN(days)) {
+    out.textContent = "कृपया सही तिथि और दिन भरें।";
+    return;
+  }
+
+  const resultDate = new Date(start);
+  resultDate.setDate(resultDate.getDate() + days);
+
+  const d = resultDate.getDate().toString().padStart(2, "0");
+  const m = (resultDate.getMonth() + 1).toString().padStart(2, "0");
+  const y = resultDate.getFullYear();
+
+  out.textContent = `New Date (तिथि) (: ${d}-${m}-${y}`;
+}
+
 
 /* =====================================================
    IMAGE RESIZE TOOL (FINAL VERSION)
@@ -156,9 +196,26 @@ function resizeImageFinal() {
 
   reader.onload = e => {
     img.onload = () => {
-      canvas.width = pxW;
-      canvas.height = pxH;
-      canvas.getContext("2d").drawImage(img, 0, 0, pxW, pxH);
+      const ctx = canvas.getContext("2d");
+
+// original image size
+let ow = img.width;
+let oh = img.height;
+
+// scale ratios
+let scaleW = pxW / ow;
+let scaleH = pxH / oh;
+
+// smallest scale (so image stays inside limit)
+let scale = Math.min(scaleW, scaleH, 1); // ⬅️ 1 = no upscale
+
+let finalW = Math.round(ow * scale);
+let finalH = Math.round(oh * scale);
+
+canvas.width = finalW;
+canvas.height = finalH;
+
+ctx.drawImage(img, 0, 0, finalW, finalH);
       link.href = canvas.toDataURL("image/jpeg", 0.92);
       link.style.display = "inline-block";
       msg.textContent = "Image ready है।";
