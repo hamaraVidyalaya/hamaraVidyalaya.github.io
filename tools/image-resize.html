@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Resize Tool (Passport, Signature, UPSC) | Vidyalay</title>
+  <meta name="description" content="Passport size photo, government job signature और UPSC exam के लिए image resize करें।">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="brand">Vidyalay <br> 
+  विद्यालय </h1>
+  <p class="tagline"> ज्ञान • साहित्य • उपयोगी साधन </p>
+</header>
+
+<main class="container">
+  <h1>Image Resize Tool</h1>
+  <p>
+    Image Resize Tool (Exam & Document Friendly)
+  </p>
+
+  <section class="tool-box">
+
+    <label for="imgInput"><strong>Image चुनें:</strong></label><br>
+    <input type="file" id="imgInput" accept="image/*"><br><br>
+
+    <label for="width"><strong>Width:</strong></label><br>
+    <input type="number" id="width" placeholder="जैसे 3.5"><br><br>
+
+    <label for="height"><strong>Height:</strong></label><br>
+    <input type="number" id="height" placeholder="जैसे 4.5"><br><br>
+
+    <label for="unit"><strong>Unit:</strong></label><br>
+    <select id="unit">
+      <option value="cm">cm</option>
+      <option value="mm">mm</option>
+      <option value="inch">inch</option>
+      <option value="px">px</option>
+    </select><br><br>
+
+    <label for="dpi"><strong>DPI:</strong></label><br>
+    <input type="number" id="dpi" value="300" min="72" max="600"><br>
+    <small>Allowed range: 72 – 600 DPI (recommended: 300)</small><br><br>
+
+    <button onclick="resizeImageFinal()">Resize Image</button>
+
+    <p id="imgMsg"></p>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+    <a id="download" download="resized.jpg" style="display:none;">
+      Download Resized Image
+    </a>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© विद्यालय </p>
+</footer>
+
+<script src="../tools.js"></script>
+</body>
+</html>
