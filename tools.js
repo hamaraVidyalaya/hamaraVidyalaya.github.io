@@ -167,6 +167,14 @@ function resizeImageFinal() {
     msg.textContent = "DPI 72 से 600 के बीच होना चाहिए।";
     return;
   }
+   
+
+// image type validation
+if (!file.type.startsWith("image/")) {
+  msg.textContent = "कृपया केवल image file चुनें।";
+  return;
+}
+   
 
   // A4 limit check
   if (unit !== "px") {
@@ -176,6 +184,13 @@ function resizeImageFinal() {
     }
   }
 
+   
+if (unit === "px" && (w > 4960 || h > 7016)) {
+  msg.textContent = "px size A4 limit से बड़ा नहीं हो सकता।";
+  return;
+}
+
+   
   let pxW = w, pxH = h;
   if (unit !== "px") {
     const inchW = (unit === "cm") ? w / 2.54 : (unit === "mm") ? w / 25.4 : w;
