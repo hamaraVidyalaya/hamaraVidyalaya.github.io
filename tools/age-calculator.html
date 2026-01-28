@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Calculator | Vidyalay</title>
+  <meta name="description" content="जन्म तिथि से सही आयु निकालने का आसान Age Calculator।">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="brand">Vidyalay</h1>
+  <p class="tagline">ज्ञान • साहित्य • उपयोगी साधन</p>
+</header>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <h1>Age Calculator</h1>
+  <p>जन्म तिथि के आधार पर अपनी सही आयु (वर्ष और महीने) निकालें।</p>
+
+  <section class="tool-box">
+    <label>जन्म तिथि :</label><br>
+    <input type="text" id="dob" placeholder="DD-MM-YYYY">
+    <br><br>
+
+    <button onclick="calculateAge()">Calculate Age</button>
+
+    <p id="result"></p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© विद्यालय</p>
+</footer>
+
+<script src="../tools.js"></script>
+</body>
+  </html>
