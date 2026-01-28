@@ -136,7 +136,7 @@ function calculateDatePlusDays() {
   const m = (resultDate.getMonth() + 1).toString().padStart(2, "0");
   const y = resultDate.getFullYear();
 
-  out.textContent = `New Date (तिथि) (: ${d}-${m}-${y}`;
+  out.textContent = `New Date (तिथि) : ${d}-${m}-${y}`;
 }
 
 
